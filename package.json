@@ -1,0 +1,24 @@
+{
+  "name": "propman",
+  "version": "0.0.1",
+  "description": "Property and config loader and manager allowing you to load hierarchical property values based on environment variables",
+  "main": "propman.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "property",
+    "configuration",
+    "loader",
+    "manager",
+    "environment",
+    "variables"
+  ],
+  "author": "Vinh Ta",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^3.4.1",
+    "properties-reader": "0.0.13",
+    "winston": "^2.1.1"
+  }
+}
