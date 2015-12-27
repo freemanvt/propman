@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "description": "Property and config loader and manager, allowing you to load hierarchical property values based on environment variables",
   "main": "propman.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/freemanvt/propman"
+  },
   "scripts": {
     "test": "mocha",
     "lint": "jshint *.js"
