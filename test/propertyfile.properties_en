@@ -1,2 +1,3 @@
 frontpage.intro=_en hello welcome to propname
 frontpage.footer=_en normal footer
+frontpage.substring=_en {{name}} is here
