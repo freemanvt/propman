@@ -1,2 +1,3 @@
 frontpage.intro=_en_UK hello welcome to propname
 frontpage.footer=_en_UK normal footer
+frontpage.blurb=The quick {{colour}} {{animal}} jumped over the lazy {{animal2}}

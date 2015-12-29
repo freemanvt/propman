@@ -24,8 +24,10 @@ var PropMan = (function PropertyManager() {
         var environment;
         if (env) {
             environment = env;
-        } else {
+        } else if (process.env.PROPMANENV) {
             environment = process.env.PROPMANENV;
+        } else {
+            environment = ''; // default
         }
         logger.debug('property environment [' + environment + ']');
 
@@ -35,16 +37,20 @@ var PropMan = (function PropertyManager() {
         function loadPropertyEnvVariables() {
             var propmanEnvArray = environment.split('_');
             var runningEnv = '';
-            propmanEnvArray.forEach(function(value) {
+            if (propmanEnvArray.length > 1) {
+                propmanEnvArray.forEach(function(value) {
 
-                if (propertyEnvVariables.length === 0) {
-                    runningEnv += value;
-                } else {
-                    runningEnv += '_' + value;
-                }
-                propertyEnvVariables.push(runningEnv);
-                logger.debug('loaded ' + runningEnv);
-            });
+                    if (propertyEnvVariables.length === 0) {
+                        runningEnv += value;
+                    } else {
+                        runningEnv += '_' + value;
+                    }
+                    propertyEnvVariables.push(runningEnv);
+                    logger.debug('loaded ' + runningEnv);
+                });
+            } else {
+                propertyEnvVariables.push(environment[0]);
+            }
         }
 
         loadPropertyEnvVariables();
@@ -63,6 +69,9 @@ var PropMan = (function PropertyManager() {
 
             /**
              * Load the specified property file
+             *
+             * TODO: need to add functionality where if the user put in a value like {{{required}}}, then we should capture that and exit the app with a report of the missing required properties needed for the app to start.
+             *
              * @param dir
              * @param filename
              */
@@ -71,12 +80,17 @@ var PropMan = (function PropertyManager() {
                 var localfilename = dir + '/' +filename;
                 logger.info('loading property file [' + localfilename + ']');
                 var properties = PropertiesReader(localfilename);
-
-                propertyEnvVariables.forEach(function (value) {
-                    var f = localfilename + '_' + value;
-                    logger.info('loading property file [' + f + ']');
-                    properties.append(f);
-                });
+                if (propertyEnvVariables.length > 1) {
+                    propertyEnvVariables.forEach(function (value) {
+                        var f = localfilename + '_' + value;
+                        try {
+                            logger.info('loading property file [' + f + ']');
+                            properties.append(f);
+                        } catch (err) {
+                            logger.warn('can\'t load %s', f);
+                        }
+                    });
+                }
 
                 propertiesMap[filename] = properties;
 
