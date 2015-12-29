@@ -103,6 +103,10 @@ Then in your code you can pass in a map that contains the actual value to put in
 var text = propMan.getProperty('propertyfile.properties','frontpage.blurb', {colour : 'brown', animal: 'fox', animal2: 'dog'});
 ```
 
+You will end up with the text
+
+The quick brown fox jumped over the lazy dog
+
 ## Extra
 you can also pass in the PROPMANENV environment programmatically
 
