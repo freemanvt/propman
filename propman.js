@@ -77,7 +77,13 @@ var PropMan = (function PropertyManager() {
              */
             loadProperty : function(dir, filename) {
                 // load the default property file first
-                var localfilename = dir + '/' +filename;
+                var localfilename;
+                if (dir) {
+                    localfilename = dir + '/' + filename;
+                } else {
+                    localfilename = filename;
+                }
+
                 logger.info('loading property file [' + localfilename + ']');
                 var properties = PropertiesReader(localfilename);
                 if (propertyEnvVariables.length > 1) {
