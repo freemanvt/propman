@@ -16,7 +16,7 @@ db.url=dev.db.foo.com
 appConfig.properties_en_UK
 ------------------------
 button1=submit
-button2=signin
+button2=signin<br />
 
 appConfig.properties_en_UK_PROD1
 ------------------------
@@ -45,27 +45,27 @@ PROPMANENV=en_UK_PROD1 node server.js
 
 And this will load up the following properties files
 
-appConfig.properties
-appConfig.properties_en_UK
-appConfig.properties_en_UK_PROD1
+appConfig.properties<br />
+appConfig.properties_en_UK<br />
+appConfig.properties_en_UK_PROD1<br />
 
 And the following properties value
 
-db.url=prod1.db.foo.com
-button1=submit
-button2=signin
+db.url=prod1.db.foo.com<br />
+button1=submit<br />
+button2=signin<br />
 
 On PROD2 we would pass in PROPMANENV=en_UK_PROD2 which would then load
 
-appConfig.properties
-appConfig.properties_en_UK
-appConfig.properties_en_UK_PROD2
+appConfig.properties<br />
+appConfig.properties_en_UK<br />
+appConfig.properties_en_UK_PROD2<br />
 
 with the following properties being loaded
 
-db.url=prod2.db.foo.com
-button1=submit
-button2=signin
+db.url=prod2.db.foo.com<br />
+button1=submit<br />
+button2=signin<br />
 
 ## Example 2
 You want to test the code locally on your development laptop but want to test it against a TEST database and a UAT database, 
@@ -85,7 +85,7 @@ db.url=uat.db.foo.com
 
 You can then use 
 
-PROPMANENV=en_UK_TEST to load up the TEST db.url which  will give you test.db.foo.com
+PROPMANENV=en_UK_TEST to load up the TEST db.url which  will give you test.db.foo.com<br />
 PROPMANENV=en_UK_UAT to load up the UAT db.url which will give you uat.db.foo.com
 
 If you don't pass in any environment variable you will get the default which will be dev.db.foo.com
