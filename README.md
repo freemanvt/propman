@@ -15,7 +15,7 @@ db.url=dev.db.foo.com
 
 appConfig.properties_en_UK
 ------------------------
-button1=submit
+button1=submit<br />
 button2=signin<br />
 
 appConfig.properties_en_UK_PROD1
