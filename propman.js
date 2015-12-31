@@ -70,7 +70,7 @@ var PropMan = (function PropertyManager() {
             },
 
             /**
-             * check the loaded properties laoded for filename and see if any has {{{required}}} as a value
+             * check the loaded properties loaded for filename and see if any has {{{required}}} as a value
              *
              * @param filename
              * @returns {boolean}
@@ -84,12 +84,16 @@ var PropMan = (function PropertyManager() {
             },
 
             /**
-             * Load the specified property file
-             *
-             * TODO: need to add functionality where if the user put in a value like {{{required}}}, then we should capture that and exit the app with a report of the missing required properties needed for the app to start.
+             * Load the specified property file, if any of the properties after they been loaded has a value of {{{required}}}
+             * a RequiredPropertyNotSetError error will be thrown. The caller will need to deal with the error or it will be
+             * an uncaught
              *
              * @param dir
+             *      Directory the properties files are in
              * @param filename
+             *      Property file name to load
+             * @throws
+             *      RequiredPropertyNotSetError error when after loading any of the property has a value of {{{required}}}
              */
             loadProperty : function(dir, filename) {
 

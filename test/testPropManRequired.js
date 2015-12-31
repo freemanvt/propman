@@ -38,12 +38,15 @@ describe('propMan', function() {
             try {
                 propMan.loadProperty('test','shouldthrowerror.properties');
             } catch (err) {
-                ('error ' + err);
+                logger.error('error ' + err);
                 assert(err.constructor === RequiredPropertyNotSetError);
                 logger.debug(JSON.stringify(err.extra));
             }
 
-            // TODO: write test that has ovrriding properties where the root one is required and the overriding one is valid, shouldn't throw an exception
+            // test that has overriding properties where the root one is required and the overriding one is valid, shouldn't throw an exception
+            assert.doesNotThrow(function() {
+                propMan.loadProperty('test','shouldnotthrowerror2.properties')
+            }, RequiredPropertyNotSetError);
 
 
         });

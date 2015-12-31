@@ -107,8 +107,29 @@ You will end up with the text
 
 The quick brown fox jumped over the lazy dog
 
+## Example 4
+You can make sure a property must be set a value by using {{{required}}}. If the property hasn't been set after loading 
+all the hierarchical properties files, an error will be thrown.
+
+appConfig.properties
+------------------------
+property.that.has.to.be.set={{{required}}}<br />
+label1={{{required}}}<br />
+
+
+appConfig.properties_en_UK
+------------------------
+property.that.has.to.be.set=UK specific value<br />
+label1=press for lift<br />
+
+appConfig.properties_en_US
+------------------------
+property.that.has.to.be.set=US specific value<br />
+label1=press for elevator<br />
+
+
 ## Extra
-you can also pass in the PROPMANENV environment programmatically
+You can also pass in the PROPMANENV environment programmatically
 
 ```javascript
 var propMan = require('./propman').getInstance('en_UK_PROD1');

@@ -15,8 +15,8 @@ function NoLogger() {
 
 NoLogger.prototype.debug = function() {};
 NoLogger.prototype.info = function() {};
-NoLogger.prototype.warn = function() {};
-NoLogger.prototype.error = function() {};
+NoLogger.prototype.warn = function() {console.error(arguments);};
+NoLogger.prototype.error = function() {console.error(arguments);};
 
 var logger;
 
