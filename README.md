@@ -127,6 +127,22 @@ appConfig.properties_en_US
 property.that.has.to.be.set=US specific value<br />
 label1=press for elevator<br />
 
+If you just load appConfig.properties (i.e. without any PROPMANENV) it will throw an error as both properties has a value of {{{required}}}.
+
+e.g.
+
+```javascript
+var propMan = require('./propman').getInstance();
+
+try {
+    propMan.loadProperty('./directory/to/properties','appConfig.properties');
+} catch (err) {
+    // deal with err
+    // you can get access to an object that has a map of all the properties that has been set {{{required}}} by using err.extra
+    // e.g.
+    console.dir(err.extra);
+}
+```
 
 ## Extra
 You can also pass in the PROPMANENV environment programmatically
