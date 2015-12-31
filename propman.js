@@ -9,6 +9,8 @@ var logger = require('./logger');
 var fs = require('fs');
 var PropertiesReader = require('properties-reader');
 var _ = require('lodash');
+var RequiredPropertyNotSetError = require('./RequiredPropertyNotSetError');
+
 
 var PropMan = (function PropertyManager() {
 
@@ -68,6 +70,20 @@ var PropMan = (function PropertyManager() {
             },
 
             /**
+             * check the loaded properties laoded for filename and see if any has {{{required}}} as a value
+             *
+             * @param filename
+             * @returns {boolean}
+             */
+            hasRequiredNotSet : function(filename) {
+                var properties = propertiesMap[filename];
+                if (_.indexOf(_.values(properties._properties), '{{{required}}}' ) === -1) {
+                    return false;
+                };
+                return true;
+            },
+
+            /**
              * Load the specified property file
              *
              * TODO: need to add functionality where if the user put in a value like {{{required}}}, then we should capture that and exit the app with a report of the missing required properties needed for the app to start.
@@ -76,6 +92,7 @@ var PropMan = (function PropertyManager() {
              * @param filename
              */
             loadProperty : function(dir, filename) {
+
                 // load the default property file first
                 var localfilename;
                 if (dir) {
@@ -99,6 +116,19 @@ var PropMan = (function PropertyManager() {
                 }
 
                 propertiesMap[filename] = properties;
+
+                if(this.hasRequiredNotSet(filename)) {
+                    var requiredNotSet = {};
+                    // let's get all properties that hasn't been set
+                    _.forOwn(properties._properties, function(value, key) {
+                        if (value === '{{{required}}}') {
+                            requiredNotSet[key] = value;
+                        }
+                    });
+
+                    // throw error
+                    throw new RequiredPropertyNotSetError('filename [' + filename + '] has required properties not set', requiredNotSet);
+                }
 
             },
 
