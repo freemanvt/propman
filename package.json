@@ -1,6 +1,6 @@
 {
   "name": "propman",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Property and config loader and manager, allowing you to load hierarchical property values based on environment variables",
   "main": "propman.js",
   "repository": {
