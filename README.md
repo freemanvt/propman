@@ -3,7 +3,11 @@ Simple property and config manager that allows you to load up your properties fi
 properties files specific to individual environments. Can be used when you want to keep the management of your properties 
 simple and local to the code instead of using external tools. 
 
-Can also be used for loading up text for internalization. 
+Can also be used for loading up text for internalization.
+ 
+To install
+
+> npm install propman
 
 ## Example 1
 You have two servers that you deploy your code to; PROD1 and PROD2. Both servers might need to point to different 
@@ -29,7 +33,7 @@ db.url=prod2.db.foo.com
 In your node code, you do
 
 ```javascript
-var propMan = require('./propman').getInstance();
+var propMan = require('propman').getInstance();
 propMan.loadProperty('./directory/to/properties','appConfig.properties');
 
 var dbServer = propMan.getProperty('appConfig.properties','db.url');
@@ -132,7 +136,7 @@ If you just load appConfig.properties (i.e. without any PROPMANENV) it will thro
 e.g.
 
 ```javascript
-var propMan = require('./propman').getInstance();
+var propMan = require('propman').getInstance();
 
 try {
     propMan.loadProperty('./directory/to/properties','appConfig.properties');
@@ -148,7 +152,7 @@ try {
 You can also pass in the PROPMANENV environment programmatically
 
 ```javascript
-var propMan = require('./propman').getInstance('en_UK_PROD1');
+var propMan = require('propman').getInstance('en_UK_PROD1');
 ```
 
 

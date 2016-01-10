@@ -1,7 +1,7 @@
 {
   "name": "propman",
   "version": "0.1.3",
-  "description": "Property and config loader and manager, allowing you to load hierarchical property values based on environment variables",
+  "description": "Simple property and config manager that allows you to load up your properties files and hierarchical variations of those properties files specific to individual environments. Can be used when you want to keep the management of your properties simple and local to the code instead of using external tools.",
   "main": "propman.js",
   "repository": {
     "type": "git",
